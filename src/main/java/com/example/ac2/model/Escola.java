@@ -2,6 +2,8 @@ package com.example.ac2.model;
 
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 public class Escola {
     private int idEscola;
@@ -11,6 +13,7 @@ public class Escola {
     private double notaMEC;
 
     // Uma escola tem vários cursos
+    @JsonIgnore
     private ArrayList<Curso> cursos = new ArrayList<Curso>();
 
     // ------------------- MÉTODOS -------------------

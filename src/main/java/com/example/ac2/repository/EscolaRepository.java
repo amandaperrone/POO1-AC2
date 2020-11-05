@@ -56,18 +56,10 @@ public class EscolaRepository {
         escolas.add(escola);
         return escola;
     }
-    /*
-    public Optional<Escola> removerEscola(Escola escola){
-        aux = 
-        if(escola.getCursos() != null){
-            escolas.remove(escola);
-            System.out.println("Excluído com sucesso");
-            return Optional.empty();
-        } else {
-            return Optional.of("value");
-        }
-        
-    }*/
+    
+    public void removerEscola(Escola escola){
+        escolas.remove(escola);
+    }
 
     public Escola alterarEscola(Escola escola){
         Escola aux = getEscolaByID(escola.getIdEscola()).get();

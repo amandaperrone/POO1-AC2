@@ -34,7 +34,10 @@ public class EscolaService {
 
     public void removerEscolaByID(int id){
         // adicionar condição de deletar
-    
+        Escola escola = getEscolaByID(id);
+        if (escola.getCursos().size() > 0){
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Escola possui cursos, por isso não pode ser apagada");
+        }
         respositorioE.removerEscola(getEscolaByID(id));
     }
 

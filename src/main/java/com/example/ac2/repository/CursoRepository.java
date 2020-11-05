@@ -1,5 +1,6 @@
 package com.example.ac2.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CursoRepository {
     
-    private List<Curso> cursos;
+    private List<Curso> cursos = new ArrayList<Curso>();
     private int nextIdCurso = 1;
 
     public Curso cadastrarCurso(Curso curso){

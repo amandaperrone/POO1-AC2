@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.example.ac2.dto.CursoDTO;
 import com.example.ac2.model.Curso;
 import com.example.ac2.model.Escola;
 import com.example.ac2.service.CursoService;
@@ -63,11 +64,17 @@ public class EscolaController {
         return ResponseEntity.ok(escola);
     }
 
-    @PostMapping("{id}/cursos") //não funcionou no postman
+    @PostMapping("{id}/cursos")
     public ResponseEntity<Void> cadastrarCurso(@PathVariable int id, @RequestBody Curso curso, HttpServletRequest request, UriComponentsBuilder builder) {
         curso = cursoService.cadastrarCurso(curso, id);
         UriComponents uriComponents = builder.path(request.getRequestURI() + "/" + curso.getIdCurso()).build();
         return ResponseEntity.created(uriComponents.toUri()).build();
+    }
+
+    @GetMapping("{id}/cursos") //fazer o mesmo para pegar os cursos de uma escola (GET MAPPING) para devolver os cursos da escola
+    public List<CursoDTO> getAllCursosEscola(@PathVariable int id) {
+        Escola escola = escolaService.getEscolaByID(id); 
+        return cursoService.toListDTO(escola.getCursos());
     }
     
 }

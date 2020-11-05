@@ -1,8 +1,10 @@
 package com.example.ac2.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.ac2.dto.CursoDTO;
 import com.example.ac2.model.Curso;
 import com.example.ac2.model.Escola;
 import com.example.ac2.repository.CursoRepository;
@@ -20,6 +22,24 @@ public class CursoService {
 
     @Autowired
     private EscolaService escolaService;
+
+    public CursoDTO toDTO(Curso curso){
+        CursoDTO cursodto = new CursoDTO();
+        cursodto.setNomeCurso(curso.getNomeCurso());
+        cursodto.setIdCurso(curso.getIdCurso());
+        cursodto.setLikes(curso.getLikes());
+        cursodto.setValor(curso.getValor());
+        cursodto.setDuracao(curso.getDuracao());
+        return cursodto;
+    } 
+
+    public List<CursoDTO> toListDTO(List<Curso> listaCurso){
+        ArrayList<CursoDTO> aux = new ArrayList<CursoDTO>();
+        for (Curso c: listaCurso){
+            aux.add(toDTO(c));
+        }
+        return aux;
+    }
 
     public Curso cadastrarCurso(Curso curso, int id){
         Escola escola = escolaService.getEscolaByID(id);

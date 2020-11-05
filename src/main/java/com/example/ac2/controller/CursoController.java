@@ -2,7 +2,6 @@ package com.example.ac2.controller;
 
 import java.util.List;
 
-
 import com.example.ac2.model.Curso;
 import com.example.ac2.service.CursoService;
 
@@ -47,4 +46,5 @@ public class CursoController {
         curso = cursoService.alterarCurso(curso);
         return ResponseEntity.ok(curso);
     }
+
 }
